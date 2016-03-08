@@ -25,7 +25,9 @@ haproxy:
 
 splash{{i}}:
     image: scrapinghub/splash:{{ cookiecutter.splash_version }}
-    command: --max-timeout {{ max_timeout }} --slots 10 --maxrss {{ maxrss }} --verbosity {{ verbosity }}
+    command: --max-timeout {{ max_timeout }} --slots 10 --maxrss {{ maxrss }} --verbosity {{ verbosity }} --filters-path=/etc/splash/filters
+    volumes:
+        - /root/aquarium/filters:/etc/splash/filters
     expose:
         - 8050
     mem_limit: {{ mem_limit }}
